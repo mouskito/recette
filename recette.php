@@ -42,21 +42,33 @@
 
 <div class="container">
 
-<h3>Je partage ma recette</h3>
-        <form method="post" enctype="multipart/form-data">
-        <div class="mb-3">
-            <label for="titre" class="form-label">Saisir plat</label>
-            <input type="text" class="form-control" name="titre" id="titre">
-        </div>
-        <div class="mb-3">
-            <label for="description" class="form-label">Saisir description</label>
-            <input type="text" class="form-control" name="description" id="description">
-        </div>
-        <div class="mb-3">
-            <label for="file" class="form-label">Mon plat</label>
-            <input type="file" class="form-control" name="plat" id="file">
-        </div>
-        <button type="submit" class="btn btn-outline-warning" name="recette">Je crée ma recette</button>
-        </form>
+<?php
+    if (!isset($_SESSION['user']) ) {
+        echo "
+        <div class='alert alert-danger' role='alert'>
+            OUPS ! vous devez être connecter pour partager vos recettes
+      </div>
+        ";
+    }else {
+        ?>
+        <h3>Je partage ma recette</h3>
+                <form method="post" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="titre" class="form-label">Saisir plat</label>
+                    <input type="text" class="form-control" name="titre" id="titre">
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">Saisir description</label>
+                    <input type="text" class="form-control" name="description" id="description">
+                </div>
+                <div class="mb-3">
+                    <label for="file" class="form-label">Mon plat</label>
+                    <input type="file" class="form-control" name="plat" id="file">
+                </div>
+                <button type="submit" class="btn btn-outline-warning" name="recette">Je crée ma recette</button>
+                </form>
+        <?php
+    }
+?>
 
 </div>
