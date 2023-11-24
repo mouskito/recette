@@ -14,7 +14,7 @@
         $sql->execute();
 
         $result = $sql->fetch();
-        
+
         if (password_verify($_POST['pwd'], $result['pwd'])) {;
 
           $_SESSION['user'] = $result;
@@ -31,7 +31,7 @@
 
         $source = $_FILES['avatar']['tmp_name'];
 
-        $destination = "uploads";
+        $destination = "uploads/user";
 
         // Verifie si le dossier n'existe pas
         if (!is_dir($destination)) {
