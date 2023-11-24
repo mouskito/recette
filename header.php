@@ -1,3 +1,10 @@
+<?php
+  if (!isset($_SESSION)) {
+    session_start();
+  }
+
+  require "db.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +15,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
         <a class="navbar-brand" href="/">
             <img src="https://partagestesrecettes.fr/wp-content/uploads/2019/05/logo-Partages-Tes-Recettes.png" alt="">
@@ -20,10 +27,24 @@
             <a class="nav-link active" aria-current="page" href="#">Home</a>
             </li>
         </ul>
-        <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
+        <?php
+            if (isset($_SESSION['user'])) {
+              
+              echo $_SESSION['user']['prenom']." ".$_SESSION['user']['nom'];
+              
+              echo "
+                <a href='logout.php'>Se deconnecter</a>
+              ";
+            }else {
+              ?>
+
+            <a href="acces.php">
+                <button type="button" class="btn btn-outline-success">Je m'identifie</button>
+            </a>
+          <?php
+            }
+
+            ?>
         </div>
     </div>
     </nav>
